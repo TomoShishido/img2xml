@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding='UTF-8' standalone='no' ?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 2.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="2.0">
+ <work>
+  <work-title>bFaaaP img2XML musicXML</work-title>
+ </work>
+ <identification>
+  <creator type="composer">bFaaaP Team</creator>
+  <rights>Copyright © 2021</rights>
+  <encoding>
+   <encoding-date>2020-11-04</encoding-date>
+   <encoder>bFaaaP member</encoder>
+   <software>img2XML ver 1.0</software>
+   <software>Direct export, not from Dolet</software>
+   <encoding-description>Sibelius / MusicXML 2.0</encoding-description>
+   <supports element="print" type="yes" value="yes" attribute="new-system" />
+   <supports element="print" type="yes" value="yes" attribute="new-page" />
+   <supports element="accidental" type="yes" />
+   <supports element="beam" type="yes" />
+   <supports element="stem" type="yes" />
+  </encoding>
+ </identification>
+ <defaults>
+  <scaling>
+   <millimeters>210</millimeters>
+   <tenths>1400</tenths>
+  </scaling>
+  <page-layout>
+   <page-height>1980</page-height>
+   <page-width>1400</page-width>
+   <page-margins type="both">
+    <left-margin>100</left-margin>
+    <right-margin>100</right-margin>
+    <top-margin>100</top-margin>
+    <bottom-margin>100</bottom-margin>
+   </page-margins>
+  </page-layout>
+  <system-layout>
+   <system-margins>
+    <left-margin>22</left-margin>
+    <right-margin>0</right-margin>
+   </system-margins>
+   <system-distance>52</system-distance>
+  </system-layout>
+  <appearance>
+   <line-width type="stem">0.9375</line-width>
+   <line-width type="beam">5</line-width>
+   <line-width type="staff">0.9375</line-width>
+   <line-width type="light barline">1.5625</line-width>
+   <line-width type="heavy barline">5</line-width>
+   <line-width type="leger">1.5625</line-width>
+   <line-width type="ending">1.5625</line-width>
+   <line-width type="wedge">1.25</line-width>
+   <line-width type="enclosure">0.9375</line-width>
+   <line-width type="tuplet bracket">1.25</line-width>
+   <line-width type="bracket">5</line-width>
+   <line-width type="dashes">1.5625</line-width>
+   <line-width type="extend">0.9375</line-width>
+   <line-width type="octave shift">1.5625</line-width>
+   <line-width type="pedal">1.5625</line-width>
+   <line-width type="slur middle">1.5625</line-width>
+   <line-width type="slur tip">0.625</line-width>
+   <line-width type="tie middle">1.5625</line-width>
+   <line-width type="tie tip">0.625</line-width>
+   <note-size type="cue">75</note-size>
+   <note-size type="grace">60</note-size>
+  </appearance>
+  <music-font font-family="Opus Std" font-size="17.0079" />
+  <lyric-font font-family="Plantin MT Std" font-size="9.8327" />
+  <lyric-language xml:lang="en" />
+ </defaults>
+
+ <part-list>
+  <score-part id="P1">
+   <part-name> </part-name>
+   <part-name-display>
+    <display-text> </display-text>
+   </part-name-display>
+   <part-abbreviation> </part-abbreviation>
+   <part-abbreviation-display>
+    <display-text> </display-text>
+   </part-abbreviation-display>
+   <score-instrument id="P1-I1">
+    <instrument-name> </instrument-name>
+   </score-instrument>
+  </score-part>
+ </part-list>
