@@ -5,7 +5,7 @@ To produce a musicxml file from a sheet music image
 1. img2xml can convert a sheet music image (.jpg or .png) for a piano piece (i.e., with (right hand) staff 1 and (left hand) staff 2) into a musicxml file (staff1 or staff 2).
 2. Use img2xml.ipynb on GoogleColab or use detectionintegration.py and systemintegration.py (you need to change FILE_PATH and parameters (e.g., fifths, beats, beat_type, staff)) in your local environment.
 3. An Web img2xml application is available at https://saaipf.com/app/upload
-4. Use, for instance, MuseScore (https://musescore.org/), Sibelius First (https://my.avid.com/get/sibelius-first), or xml2sound (soon available at https://saaipf. com/app2/upload) to produce a sound from the resulting xml file.
+4. Use, for instance, MuseScore (https://musescore.org/), Sibelius First (https://my.avid.com/get/sibelius-first), or xml2sound (soon available at https://saaipf.com/app2/upload) to produce a sound from the resulting xml file.
 
 5. To further train YOLOv5 models (stored at yolov5/weightsstock/) for inference, check each model with specific labels set forth in lines 429 to 474 of makeyolomusicdict/generatedictforxml.py.
 6. Each measure training and test data can be created by using enlargemeasures/enkargeeachmeasure.py, labelImg (https://github.com/tzutalin/labelImg), and roboflow (https://roboflow.com).
