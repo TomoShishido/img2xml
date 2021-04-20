@@ -25,7 +25,7 @@ def produce_enlargedmeasures(img, txtlines, upper_margin, lower_margin):#upper m
         bottom = int((float(target_info[2]) + float(target_info[4]) / 2)*img_height)
         width = right - left
         height = bottom - top
-        print('widthは{}、heightは{}'.format(width, height))
+        print('the width is {} and the height is {}'.format(width, height))
         #add upper and lower margins to select roi (region of interest)
         mod_top = top - int(upper_margin * height)
         mod_bottom = bottom + int(lower_margin * height)
@@ -76,7 +76,7 @@ def enlarge_eachmeasure_in_eachstaff(FILE_PATH, pairedStaff=True, upper_margin=1
                 
                 #Please provide here with your desired augmentation   
                 measure_images = produce_enlargedmeasures(img, txtlines, upper_margin=upper_margin, lower_margin=lower_margin)
-                print(f'measure_imagesの個数は{len(measure_images)}です。')
+                print(f'the number of measure_images is {len(measure_images)}')
                 #save each resized measure as a file
                 for i, resized_measure_image in enumerate(measure_images):
                     cv2.imwrite(dirname + '/../../measure/' + namewithoutext + '_measure#' + '{:0=3}'.format(i) + image_ext, resized_measure_image)
@@ -94,7 +94,7 @@ def giveResizedMeasureImage(measureOfInterest, img_input, img_width, img_height,
     bottom = int(eachmeasure['bottom']*img_height)
     width = right - left
     height = bottom - top
-    print('eachmeasureのwidthは{}、heightは{}'.format(width, height))
+    print('eachmeasure has a width of {} and a height of {}'.format(width, height))
     #add upper and lower margins to select roi (region of interest)
     mod_top = top - int(upper_margin * height)
     mod_bottom = bottom + int(lower_margin * height)

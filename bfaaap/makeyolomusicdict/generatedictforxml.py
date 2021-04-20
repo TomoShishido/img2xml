@@ -1181,7 +1181,7 @@ def checkChangeReviewVoices(all_vodMS_rest_items_input, preset_measure_duration)
         totalduration_voice1, totalduration_voice2 = calculateDurationForEachVoiceInall_vodMS_rest_items(all_vodMS_rest_items)
         print(f'preset_measure_duration：{preset_measure_duration}; the totalduration_voice1 after the first adjustment is {totalduration_voice1}; the totalduration_voice2 is {totalduration_voice2}')
     else:
-        print('調整は実行しませんでした。')
+        print('duration adjustment is not carried out')
 
     totalduration_voice1, totalduration_voice2 = calculateDurationForEachVoiceInall_vodMS_rest_items(all_vodMS_rest_items)
     #if totalduration_voice1 exceeds the preset_measure_duration, adjust the voice
@@ -1595,7 +1595,7 @@ def annotateEachMS(horizontallysortedMSlist_input, current_accidental_table_inpu
             # print(f'unaanalyzed category')
     
     #start voice adjustment in all_vodMS_rest_items.append([eachms])
-    # print(f'voice調整するall_vodMS_rest_itemsは：{all_vodMS_rest_items}')
+    
     #the case where there are voices (see above cases: both ends are arm/beam and/or rest items)
     if areVoices:
         #the initial duration for each voice when areVoices are true
@@ -2141,11 +2141,11 @@ def giveBodyNoteDict(eachnote_ms, note_count, staff):
     if isBody(eachnote_ms):
         # print(f'eachnote{note_count}は{eachnote_ms}')
         if eachnote_ms['chord'] == True:
-            note_unit[nameOfNote] |= {'chord':''}
+            note_unit[nameOfNote].update({'chord':''})
     
         if eachnote_ms['dot'] == True:
             if eachnote_ms['alter'] == '':
-                note_unit[nameOfNote] |= {'pitch': {
+                note_unit[nameOfNote].update({'pitch': {
                         'step':eachnote_ms['step'],
                         
                         'octave':str(eachnote_ms['octave'])},
@@ -2154,9 +2154,9 @@ def giveBodyNoteDict(eachnote_ms, note_count, staff):
                     'type':eachnote_ms['type'],
                     'dot':'',
                     'stem':eachnote_ms['stem'],
-                    'staff':str(staff)}
+                    'staff':str(staff)})
             else:
-                note_unit[nameOfNote] |= {'pitch': {
+                note_unit[nameOfNote].update({'pitch': {
                     'step':eachnote_ms['step'],
                     'alter':str(eachnote_ms['alter']),
                     'octave':str(eachnote_ms['octave'])},
@@ -2165,11 +2165,11 @@ def giveBodyNoteDict(eachnote_ms, note_count, staff):
                 'type':eachnote_ms['type'],
                 'dot':'',
                 'stem':eachnote_ms['stem'],
-                'staff':str(staff)}
+                'staff':str(staff)})
         else:
             #dot == False
             if eachnote_ms['alter'] == '':
-                note_unit[nameOfNote] |= {'pitch': {
+                note_unit[nameOfNote].update({'pitch': {
                         'step':eachnote_ms['step'],
                         
                         'octave':str(eachnote_ms['octave'])},
@@ -2177,9 +2177,9 @@ def giveBodyNoteDict(eachnote_ms, note_count, staff):
                     'voice':str(eachnote_ms['voice']),
                     'type':eachnote_ms['type'],
                     'stem':eachnote_ms['stem'],
-                    'staff':str(staff)}
+                    'staff':str(staff)})
             else:
-                note_unit[nameOfNote] |= {'pitch': {
+                note_unit[nameOfNote].update({'pitch': {
                     'step':eachnote_ms['step'],
                     'alter':str(eachnote_ms['alter']),
                     'octave':str(eachnote_ms['octave'])},
@@ -2187,18 +2187,18 @@ def giveBodyNoteDict(eachnote_ms, note_count, staff):
                 'voice':str(eachnote_ms['voice']),
                 'type':eachnote_ms['type'],
                 'stem':eachnote_ms['stem'],
-                'staff':str(staff)}
+                'staff':str(staff)})
         #beam
         if eachnote_ms['type'] == 'eighth' and eachnote_ms['beam_content'] == '':
             #in the case of arm
-            note_unit[nameOfNote] |= {'beam':{
+            note_unit[nameOfNote].update({'beam':{
                     'number':'1',
                     'content':'begin'
-                }}
+                }})
         elif eachnote_ms['beam_content'] == 'begin' or eachnote_ms['beam_content'] == 'continue' or eachnote_ms['beam_content'] == 'end':
-            note_unit[nameOfNote] |= {'beam':{
+            note_unit[nameOfNote].update({'beam':{
                     'number':str(eachnote_ms['beam_number']),
-                    'content':eachnote_ms['beam_content']}}
+                    'content':eachnote_ms['beam_content']}})
     if eachnote_ms['step'] == '': 
         return {}
     else: 
@@ -2212,13 +2212,13 @@ def giveRestNoteDict(eachnote_ms, note_count, staff):
     if isRest(eachnote_ms):
         # print(f'eachnote{note_count}は{eachnote_ms}')
         if eachnote_ms['chord'] == True:
-            note_unit[nameOfNote] |= {'chord':''}
+            note_unit[nameOfNote].update({'chord':''})
         
-        note_unit[nameOfNote] |= {'rest':'',
+        note_unit[nameOfNote].update({'rest':'',
                 'duration':str(eachnote_ms['duration']),
                 'voice':str(eachnote_ms['voice']),
                 'type':eachnote_ms['type'],
-                'staff':str(staff)}
+                'staff':str(staff)})
     return {nameOfNote:note_unit[nameOfNote]}    
 
 def giveDirectionDict(eachnote_ms, direction_count, staff):
@@ -2228,11 +2228,11 @@ def giveDirectionDict(eachnote_ms, direction_count, staff):
     if isClef(eachnote_ms):
         # print(f'eachnote{note_count}は{eachnote_ms}')
         if eachnote_ms['octave_shift'] == 'down' or eachnote_ms['octave_shift'] == 'up' or eachnote_ms['octave_shift'] == 'stop':
-            direction_unit[nameOfDirection] |= {'direction-type':{
+            direction_unit[nameOfDirection].update({'direction-type':{
                     'octave-shift':{
                         'type':eachnote_ms['octave_shift'],
                     }                    
-                }}
+                }})
         
     return {nameOfDirection:direction_unit[nameOfDirection]}
 
@@ -2248,22 +2248,22 @@ def giveClefDict(eachnote_ms, staff):
         
         if eachnote_ms['clef'] == Clef.F or eachnote_ms['clef'] == Clef.F8vb:
             # sign_str = 'F'
-            attributes_added_unit[nameOfAttributes_added] |= {'clef':{
+            attributes_added_unit[nameOfAttributes_added].update({'clef':{
                     'attrib': {
                         'number': str(staff)
                     },
                     'sign':'F',
                     'line':'4'
-                }}
+                }})
         elif eachnote_ms['clef'] == Clef.G or eachnote_ms['clef'] == Clef.G8va:
             # sign_str = 'G'
-            attributes_added_unit[nameOfAttributes_added] |= {'clef':{
+            attributes_added_unit[nameOfAttributes_added].update({'clef':{
                     'attrib': {
                         'number': str(staff)
                     },
                     'sign':'G',
                     'line':'2'
-                }}
+                }})
         # print(f'eachnote{note_count}は{eachnote_ms}')
         
         
@@ -2295,31 +2295,31 @@ def generateDictForET_singlestaff(ms_sequenceOfInterest_staff_input, tempo, beat
                 component_unit[nameOfMeasure] = {'attrib': {'number':str(i+1),'width':'360'},'attributes': {'divisions':'256','key':{'fifths':str(fifths),'mode':'major'},'time':{'beats':str(beats),'beat-type':str(beat_type)},'staves':'1','clef':{'sign':clef_str,'line':line_str }} }#'direction0':{'sound':{'tempo':str(tempo)}}
                 for j, eachnote_ms in enumerate(eachmeasure):
                     if isBody(eachnote_ms):
-                        component_unit[nameOfMeasure] |= giveBodyNoteDict(eachnote_ms, note_count=note_count, staff=1)
+                        component_unit[nameOfMeasure].update(giveBodyNoteDict(eachnote_ms, note_count=note_count, staff=1))
                         note_count += 1
                     elif isRest(eachnote_ms):
-                        component_unit[nameOfMeasure] |= giveRestNoteDict(eachnote_ms, note_count=note_count, staff=1)
+                        component_unit[nameOfMeasure].update(giveRestNoteDict(eachnote_ms, note_count=note_count, staff=1))
                         note_count += 1
                     elif eachnote_ms['octave_shift'] != '':
-                        component_unit[nameOfMeasure] |= giveDirectionDict(eachnote_ms, direction_count=direction_count, staff=1)
+                        component_unit[nameOfMeasure].update(giveDirectionDict(eachnote_ms, direction_count=direction_count, staff=1))
                     elif eachnote_ms['clefchange'] == True:
-                        component_unit[nameOfMeasure] |= giveClefDict(eachnote_ms, staff=1)
+                        component_unit[nameOfMeasure].update(giveClefDict(eachnote_ms, staff=1))
 
-                music_data_template['part'] |= {nameOfMeasure:component_unit[nameOfMeasure]}
+                music_data_template['part'].update({nameOfMeasure:component_unit[nameOfMeasure]})
             else:
                 component_unit[nameOfMeasure] = {'attrib': {'number':str(i+1),'width':'360'}}
                 for j, eachnote_ms in enumerate(eachmeasure):
                         if isBody(eachnote_ms):
-                            component_unit[nameOfMeasure] |= giveBodyNoteDict(eachnote_ms, note_count=note_count, staff=1)
+                            component_unit[nameOfMeasure].update(giveBodyNoteDict(eachnote_ms, note_count=note_count, staff=1))
                             note_count += 1
                         elif isRest(eachnote_ms):
-                            component_unit[nameOfMeasure] |= giveRestNoteDict(eachnote_ms, note_count=note_count, staff=1)
+                            component_unit[nameOfMeasure].update(giveRestNoteDict(eachnote_ms, note_count=note_count, staff=1))
                             note_count += 1
                         elif eachnote_ms['octave_shift'] == 'down' or eachnote_ms['octave_shift'] == 'up' or eachnote_ms['octave_shift'] == 'stop':
-                            component_unit[nameOfMeasure] |= giveDirectionDict(eachnote_ms, direction_count=direction_count, staff=1)
+                            component_unit[nameOfMeasure].update(giveDirectionDict(eachnote_ms, direction_count=direction_count, staff=1))
                         elif eachnote_ms['clefchange'] == True:
-                            component_unit[nameOfMeasure] |= giveClefDict(eachnote_ms, staff=1)
-                music_data_template['part'] |= {nameOfMeasure:component_unit[nameOfMeasure]}
+                            component_unit[nameOfMeasure].update(giveClefDict(eachnote_ms, staff=1))
+                music_data_template['part'].update({nameOfMeasure:component_unit[nameOfMeasure]})
         
         return music_data_template    
 

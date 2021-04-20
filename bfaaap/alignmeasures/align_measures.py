@@ -35,15 +35,15 @@ def grouping_measures(measures): # to group the measures in the X direction
     staves = []#initialize staves
     for measure in measures_copy1:
         if (measure['label'] == '0') or (measure['label'] == '1'):
-            # print('measureのlabel{}がありました'.format(measure['label']))
+            
             #collect measures in a stave, the center_y position of which is between the top and the bottom of the measure (X0 or X1) of interest
             stave = [] # initialize a stave as an element of staves
             for candidatemeasure in measures_copy2:
                if  (measure['center_y'] - 0.02) <= candidatemeasure['center_y'] and candidatemeasure['center_y'] <= (measure['center_y'] + 0.02):
-                    # print('candidateがありました。')
+                    
                     stave.append(candidatemeasure)
             #sort the resulting measures in the stave in the X-direction
-            # print('得られたstaveは{}です。'.format(stave))
+            
             stave_sorted = sorted(stave, key=lambda x:x['center_x'])
             staves.append(stave_sorted)
     return staves
@@ -51,7 +51,7 @@ def grouping_measures(measures): # to group the measures in the X direction
 def deleteOverlaps(staves_input):
     staves = copy.copy(staves_input)
     staves_tmp = copy.copy(staves_input)
-    print('deleteOverlaps(staves_input)を通過しました。')
+    print('pass through deleteOverlaps(staves_input)')
     # to remove overlapping x0 and x1
     for i, stave in enumerate(staves_tmp):
         if i == 0:
@@ -93,15 +93,13 @@ def generate_measures_in_eachstave_aslist(FILE_PATH):
             measures = collect_measures(txtlines=txtlines)
             # print(measures)
             staves = grouping_measures(measures)
-            # print('得られたstavesを表示します。')
-            # print(staves)
-            # print('stavesの個数は：{}個です。'.format(len(staves)))
+            
             adjusted_staves = deleteOverlaps(staves)
             count_staves = 0
-            print(f'adjusted_stavesのstaffの個数は{len(adjusted_staves)}')
+            print(f'adjusted_staves has {len(adjusted_staves) staves}')
             for i, stave in enumerate(adjusted_staves):
-                print(f'{i}番目のstaff中のmeasureの個数は{len(stave)}')
+                print(f'{i}th staff has {len(stave) measures}')
                 center_y = stave[0]['center_y']
-                print(f'{i}番目のstaffのcenter_yは：{center_y}')
+                print(f'staff {i}: center_y is {center_y}')
                 
     return adjusted_staves
