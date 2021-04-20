@@ -96,9 +96,9 @@ def generate_measures_in_eachstave_aslist(FILE_PATH):
             
             adjusted_staves = deleteOverlaps(staves)
             count_staves = 0
-            print(f'adjusted_staves has {len(adjusted_staves) staves}')
+            print(f'adjusted_staves has {len(adjusted_staves)} staves')
             for i, stave in enumerate(adjusted_staves):
-                print(f'{i}th staff has {len(stave) measures}')
+                print(f'{i}th staff has {len(stave)} measures')
                 center_y = stave[0]['center_y']
                 print(f'staff {i}: center_y is {center_y}')
                 
