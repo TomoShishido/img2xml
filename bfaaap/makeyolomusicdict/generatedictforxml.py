@@ -2116,14 +2116,16 @@ def generateMSsequenceForStaff1or2(all_ms_in_eachmeasure_input, current_accident
             
             print(f'the number of items in hsMSlist is {len(hsMSlist)}')
             print(f'hsMSlist[0]["measuretype"] is {hsMSlist[0]["measuretype"]}; the category is {hsMSlist[0]["category"]}')
-            if hsMSlist[1]['measuretype'] == MeasureType.x0 and (hsMSlist[1]['category'] == Category.cf0):
-                current_clef_input = hsMSlist[1]['clef']
-                hsMSlist[1]['clefchange'] = True
-                # print('generateMSsequenceForStaff1or2のclefchangeを通過しました。')
-            elif hsMSlist[1]['measuretype'] == MeasureType.x1 and (hsMSlist[1]['category'] == Category.cf1):
-                current_clef_input = hsMSlist[0]['clef']
-                hsMSlist[1]['clefchange'] = True
-                # print('generateMSsequenceForStaff1or2のclefchangeを通過しました。')
+            #if len(hsMSlist) > 1
+            if len(hsMSlist) > 1:
+                if hsMSlist[1]['measuretype'] == MeasureType.x0 and (hsMSlist[1]['category'] == Category.cf0):
+                    current_clef_input = hsMSlist[1]['clef']
+                    hsMSlist[1]['clefchange'] = True
+                    # print('generateMSsequenceForStaff1or2 passes through clefchange')
+                elif hsMSlist[1]['measuretype'] == MeasureType.x1 and (hsMSlist[1]['category'] == Category.cf1):
+                    current_clef_input = hsMSlist[0]['clef']
+                    hsMSlist[1]['clefchange'] = True
+                    # print('generateMSsequenceForStaff1or2 passes through clefchange')
             body_rest_items_sequence_result, current_accidental_table, current_clef = annotateEachMS(hsMSlist, current_accidental_table, staff, current_clef_input, preset_measure_duration, alpha, beta)
             ms_sequenceOfInterest.append(body_rest_items_sequence_result)
     return ms_sequenceOfInterest
